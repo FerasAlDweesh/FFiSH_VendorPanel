@@ -1,8 +1,6 @@
 import { decorate, observable } from "mobx";
-import { AsyncStorage } from "react-native";
+import axios from "axios";
 import jwt_decode from "jwt-decode";
-
-import { instance } from "./instance";
 
 class AuthStore {
   user = null;
@@ -25,9 +23,22 @@ class AuthStore {
       const res = await axios.post("127.0.0.1:8000/vendor/login/", userData);
       const user = res.data;
       this.setUser(user.token);
-      history.replace("/");
+      history.replace("/list");
     } catch (err) {
       console.log(err.response.data);
+    }
+  };
+
+  checkForToken = () => {
+    const token = localStorage.getItem("myToken");
+    if (token) {
+      const currentTime = Date.now() / 1000;
+      const user = jwt_decode(token);
+      if (user.exp >= currentTime) {
+        this.setUser(token);
+      } else {
+        this.logout();
+      }
     }
   };
 
@@ -40,16 +51,3 @@ decorate(AuthStore, {
 });
 const authStore = new AuthStore();
 export default authStore;
-
-checkForToken = () => {
-  const token = localStorage.getItem("myToken");
-  if (token) {
-    const currentTime = Date.now() / 1000;
-    const user = jwt_decode(token);
-    if (user.exp >= currentTime) {
-      this.setUser(token);
-    } else {
-      this.logout();
-    }
-  }
-};
