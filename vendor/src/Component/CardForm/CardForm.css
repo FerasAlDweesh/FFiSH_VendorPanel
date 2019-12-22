@@ -1,0 +1,11 @@
+.container {
+  display: center;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10rem;
+}
+
+.createButton {
+  margin-left: 10rem;
+  margin-right: 10rem;
+}
