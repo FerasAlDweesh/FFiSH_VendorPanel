@@ -1,15 +1,18 @@
 import React, { Component } from "react";
-
+import { withRouter } from "react-router-dom";
 import { observer } from "mobx-react";
 
 import authStore from "../../Stores/authStore";
 
-const Logout = () => {
+const Logout = props => {
   return (
-    <button classNmae="btn btn-danger" OnClick={authStore.logout}>
+    <button
+      className="btn btn-danger"
+      onClick={() => authStore.logout(props.history)}
+    >
       Logout {authStore.user.username}
     </button>
   );
 };
 
-export default observer(Logout);
+export default withRouter(observer(Logout));

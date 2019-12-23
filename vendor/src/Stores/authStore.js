@@ -20,12 +20,15 @@ class AuthStore {
 
   loginUser = async (userData, history) => {
     try {
-      const res = await axios.post("127.0.0.1:8000/vendor/login/", userData);
+      const res = await axios.post(
+        "http://127.0.0.1:8000/api/login/",
+        userData
+      );
       const user = res.data;
-      this.setUser(user.token);
-      history.replace("/list");
+      this.setUser(user.access);
+      history.replace("/home");
     } catch (err) {
-      console.log(err.response.data);
+      console.log(err);
     }
   };
 
@@ -42,12 +45,14 @@ class AuthStore {
     }
   };
 
-  logout = () => {
+  logout = history => {
     this.setUser();
+    history.replace("/login");
   };
 }
 decorate(AuthStore, {
   user: observable
 });
 const authStore = new AuthStore();
+authStore.checkForToken();
 export default authStore;
