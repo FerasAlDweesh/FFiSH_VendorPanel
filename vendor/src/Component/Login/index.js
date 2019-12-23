@@ -50,12 +50,9 @@ class Login extends Component {
                     onChange={this.handleChange}
                   />
                 </div>
-
-                <a href="/list" class="card-link">
-                  <button type="submit" className="btn btn-primary">
-                    Login
-                  </button>
-                </a>
+                <button type="submit" className="btn btn-primary">
+                  Login
+                </button>
               </form>
             </div>
           </div>

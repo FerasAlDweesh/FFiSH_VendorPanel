@@ -4,11 +4,9 @@ import "./App.css";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import { observer } from "mobx-react";
 
-//Store
-import authStore from "./Stores/authStore";
-
 //Component
 import Login from "./Component/Login";
+import Home from "./Component/Home";
 
 function App() {
   const getView = () => {
@@ -16,6 +14,7 @@ function App() {
       <Switch>
         <Redirect exact from="/" to="/login" />
         <Route path="/login" component={Login} />
+        <Route path="/home" component={Home} />
       </Switch>
     );
   };
