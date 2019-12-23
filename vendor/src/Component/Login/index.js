@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect, Link } from "react-router-dom";
 import { observer } from "mobx-react";
-import authStore from "../../Stores/authStore";
+import authStore from "../../stores/authStore";
 
 class Login extends Component {
   state = {
