@@ -3,7 +3,7 @@ import { NavLink, Redirect } from "react-router-dom";
 import { observer } from "mobx-react";
 
 //Store
-import authStore from "../../Stores/authStore";
+import authStore from "../../stores/authStore";
 
 //Component
 import Logout from "../Logout";

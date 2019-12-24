@@ -1,5 +1,5 @@
-import { decorate, observable, computed } from "mobx";
-import axios from "axios";
+import { decorate, observable } from "mobx";
+import instance from "./instance";
 
 class VendorStore {
   name = [];
@@ -8,7 +8,8 @@ class VendorStore {
 
   createCard = async userData => {
     try {
-      const res = await axios.post("127.0.0.1:8000/api/cardform/", userData);
+      const res = await instance.post("vendors/create/", userData);
+
       const data = res.data;
     } catch (err) {
       console.error(err.response);
