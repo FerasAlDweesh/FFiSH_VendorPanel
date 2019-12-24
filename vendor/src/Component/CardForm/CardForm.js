@@ -20,7 +20,12 @@ class CardForm extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
+    console.log(event);
     vendorStore.createCard(this.state);
+  };
+
+  handleFileChange = event => {
+    this.setState({ [event.target.name]: event.target.files[0] });
   };
 
   handleChange = event => {
@@ -29,7 +34,7 @@ class CardForm extends Component {
   render() {
     return (
       <div className="container">
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <center>
             <strong>
               <h1>Create Your Card</h1>
@@ -87,18 +92,14 @@ class CardForm extends Component {
                 className="form-control-file"
                 id="exampleFormControlFile1"
                 name="image"
-                onChange={this.handleChange}
+                onChange={this.handleFileChange}
               />
             </div>
           </div>
           <div className="form-group row">
             <div className="col-sm-10">
               <center>
-                <button
-                  type="submit"
-                  className="btn btn-primary"
-                  onClick={this.handleSubmit}
-                >
+                <button type="submit" className="btn btn-primary">
                   Create Card
                 </button>
               </center>

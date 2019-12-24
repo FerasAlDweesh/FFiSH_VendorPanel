@@ -3,16 +3,20 @@ import instance from "./instance";
 
 class VendorStore {
   name = [];
-  image = [];
+  image = null;
   points = [];
 
-  createCard = async userData => {
+  createCard = async data => {
     try {
-      const res = await instance.post("vendors/create/", userData);
-
-      const data = res.data;
+      let form_data = new FormData();
+      form_data.append("name", data.name);
+      form_data.append("image", data.image);
+      form_data.append("points", data.points);
+      const res = await instance.post("vendors/create/", form_data, {
+        headers: { "Content-type": "multipart/form-data" }
+      });
     } catch (err) {
-      console.error(err.response);
+      console.error(err.response.data);
     }
   };
 }
