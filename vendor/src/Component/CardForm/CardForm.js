@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
+import { NavLink, Redirect } from "react-router-dom";
 
 //Bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -10,6 +11,7 @@ import "./CardForm.css";
 
 //Store
 import vendorStore from "../../stores/VendorStore";
+import authStore from "../../stores/authStore";
 
 class CardForm extends Component {
   state = {
@@ -32,6 +34,7 @@ class CardForm extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
   render() {
+    // if (!authStore.user) return <Redirect to="/login" />;
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit}>
