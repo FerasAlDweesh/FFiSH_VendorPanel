@@ -9,9 +9,9 @@ import authStore from "../../stores/authStore";
 import Logout from "../Logout";
 
 const Home = () => {
-  if (!authStore.user) {
-    return <Redirect to="/login" />;
-  }
+  // if (!authStore.user) {
+  //   return <Redirect to="/login" />;
+  // }
   return (
     <div>
       {/* <img src={logo} className="logo" alt="the index logo" /> */}
@@ -22,7 +22,7 @@ const Home = () => {
         <h4 className="menu-item">
           <NavLink to="/cardform">Create A Card</NavLink>
         </h4>
-        <Logout />
+        {/* <Logout /> */}
       </section>
     </div>
   );
