@@ -9,7 +9,7 @@ class AuthStore {
   setUser = token => {
     if (token) {
       localStorage.setItem("myToken", token);
-      instance.defaults.headers.common.Authorization = `jwt ${token}`;
+      instance.defaults.headers.common.Authorization = `Bearer ${token}`;
       const decodedUser = jwt_decode(token);
       this.user = decodedUser;
     } else {

@@ -7,23 +7,20 @@ import authStore from "../../stores/authStore";
 
 //Component
 import Logout from "../Logout";
+import Dashboard from "./dashboard";
+import Navbar from "../navigation/Navbar";
 
 const Home = () => {
-  // if (!authStore.user) {
-  //   return <Redirect to="/login" />;
-  // }
+  if (!authStore.user) {
+    return <Redirect to="/login" />;
+  }
   return (
     <div>
-      {/* <img src={logo} className="logo" alt="the index logo" /> */}
-      <section>
-        <h4 className="menu-item active">
-          <NavLink to="/home">Home</NavLink>
-        </h4>
-        <h4 className="menu-item">
-          <NavLink to="/cardform">Create A Card</NavLink>
-        </h4>
-        {/* <Logout /> */}
-      </section>
+      <Navbar />
+      <br />
+      <br />
+      <br />
+      <Dashboard />
     </div>
   );
 };
