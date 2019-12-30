@@ -3,10 +3,9 @@ import { observer } from "mobx-react";
 import Spinner from "./Spinner";
 
 //stores
-import userStore from "../../stores/userStore";
+import cardStore from "../../stores/cardStore";
 import vendorStore from "../../stores/VendorStore";
 import authStore from "../../stores/authStore";
-import instance from "../../stores/instance";
 
 //Bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -22,22 +21,23 @@ class Dashboard extends Component {
   };
 
   componentDidMount = async () => {
-    await userStore.fetchAllUsers();
+    await cardStore.fetchAllCards();
     console.log("HELLOOO");
   };
 
   render() {
-    if (userStore.loading) {
+    if (cardStore.loading) {
       return <Spinner />;
     }
-    let usersList = userStore.users.map(user => {
+    let usersList = cardStore.cards.map(card => {
+      console.log("CARD", card);
       return (
         <tr>
-          <th scope="row">user.id</th>
-          <td>user.first_name</td>
-          <td>user.last_name</td>
-          <td>user.username</td>
-          <td>10-12-2019</td>
+          <th scope="row">{card.user.id}</th>
+          <td>{card.user.username}</td>
+          <td>{card.user.first_name}</td>
+          <td>{card.user.last_name}</td>
+          <td>{card.points}</td>
         </tr>
       );
     });
@@ -47,10 +47,10 @@ class Dashboard extends Component {
         <thead className="thead-dark">
           <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
             <th scope="col">Username</th>
-            <th scope="col">Date Joined</th>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Points</th>
           </tr>
         </thead>
         <tbody>{usersList}</tbody>

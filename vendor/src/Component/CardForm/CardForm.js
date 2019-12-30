@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
-import { NavLink, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 //Bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -18,7 +18,8 @@ class CardForm extends Component {
   state = {
     name: "",
     image: "",
-    points: ""
+    points: "",
+    category: ""
   };
 
   handleSubmit = event => {
@@ -87,6 +88,26 @@ class CardForm extends Component {
                   <option>5</option>
                   <option>6</option>
                   <option>7</option>
+                </select>
+              </div>
+            </div>
+            <div className="form-group row">
+              <label
+                for="exampleFormControlSelect1"
+                className="col-sm-2 col-form-label"
+              >
+                <strong>Category:</strong>
+              </label>
+              <div className="col-sm-10">
+                <select
+                  className="form-control"
+                  id="exampleFormControlSelect1"
+                  name="category"
+                  onChange={this.handleChange}
+                >
+                  <option>restaurant</option>
+                  <option>cafe</option>
+                  <option>donut</option>
                 </select>
               </div>
             </div>

@@ -5,6 +5,7 @@ class VendorStore {
   name = [];
   image = null;
   points = [];
+  category = [];
 
   createCard = async data => {
     try {
@@ -12,6 +13,7 @@ class VendorStore {
       form_data.append("name", data.name);
       form_data.append("image", data.image);
       form_data.append("points", data.points);
+      form_data.append("category", data.category);
       const res = await instance.post("vendors/create/", form_data, {
         headers: { "Content-type": "multipart/form-data" }
       });
@@ -24,7 +26,8 @@ class VendorStore {
 decorate(VendorStore, {
   name: observable,
   image: observable,
-  points: observable
+  points: observable,
+  category: observable
 });
 
 const vendorStore = new VendorStore();
