@@ -45,7 +45,7 @@ class AuthStore {
 
   logout = history => {
     this.setUser();
-    history.replace("/login");
+    history.replace("login/");
   };
 }
 decorate(AuthStore, {
